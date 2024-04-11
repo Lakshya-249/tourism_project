@@ -12,6 +12,8 @@ const PackageCard = ({ title, description, destinations, imageUrl }) => {
       navigate("/layout/adventure");
     } else if (title.startsWith("Culture")) {
       navigate("/layout/cultural");
+    } else if (title.startsWith("Cuisine")) {
+      navigate("/layout/cuisine");
     } else {
       navigate("/layout/spiritual");
     }

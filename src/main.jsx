@@ -13,6 +13,7 @@ import FSignin from "./finalSign_In.jsx";
 import CulturalPlaces from "./cultural.jsx";
 import AdventurousPlaces from "./adventure.jsx";
 import SpiritualPlaces from "./spiritual.jsx";
+import Cuisine from "./cuisine.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
           {
             path: "spiritual",
             element: <SpiritualPlaces />,
+          },
+          {
+            path: "cuisine",
+            element: <Cuisine />,
           },
           {
             path: "team",
