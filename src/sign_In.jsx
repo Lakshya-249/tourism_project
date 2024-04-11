@@ -4,6 +4,7 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 // import { useDispatch, useSelector } from "react-redux";
 // import { addUser } from "./features/user";
 import { useNavigate } from "react-router-dom";
+import { register } from "./Service/signup";
 
 const Signintemplate = () => {
   const [formdata, setdata] = useState({
@@ -12,7 +13,6 @@ const Signintemplate = () => {
   });
   const [field, setfield] = useState(false);
   const [isusername, setusername] = useState(true);
-  const [isemail, setemail] = useState(true);
 
   //   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,20 +32,11 @@ const Signintemplate = () => {
 
   const handleClick = async () => {
     if (field) {
-      //   dispatch(addUser(formdata));
-      //   const response = await fetch(
-      //     `https://profileprojectbanckend-production.up.railway.app/api/getuser?username=${formdata.username}&email=${formdata.email}`
-      //   );
-      //   const data = await response.json();
-      //   console.log(response.status);
-      //   if (response.status !== 200) {
-      //     if (data.message.startsWith("Email")) {
-      //       setemail(false);
-      //     } else {
-      //       setusername(false);
-      //     }
-      //     return;
-      //   }
+      const data = await register(formdata, "login");
+      if (data == null) {
+        setusername(false);
+        return;
+      }
       navigate("/layout/home");
     }
   };
@@ -66,22 +57,21 @@ const Signintemplate = () => {
         </span>
       </p>
       <div>
-        <p className="text-[3rem] mb-10">Sign in to Dribble</p>
+        <p className="text-[3rem] mb-10">Sign in to NamasteNomad</p>
         <p
           id="errorPara"
           className={`text-red-400 text-md font-semibold ${
-            isusername & isemail ? "hidden" : ""
+            isusername ? "hidden" : ""
           }`}
         >
           &nbsp;
-          <span className="text-[1.6rem]">.</span> Username/Email has already
-          been taken
+          <span className="text-[1.6rem]">.</span> Username/Password Incorrect
         </p>
       </div>
       <div className="space-y-[2rem] w-[71.6%] max-sm:w-full">
         <div>
           <p className="text-md">
-            <span className={`${isemail ? "hidden" : ""}`}>
+            <span className={`${isusername ? "hidden" : ""}`}>
               <FontAwesomeIcon
                 icon={faTriangleExclamation}
                 style={{ color: "#ee6d6d" }}
@@ -95,13 +85,21 @@ const Signintemplate = () => {
             id="username"
             placeholder="User_234"
             className={`rounded-xl py-2 outline-none px-5 font-medium ${
-              isemail ? "bg-gray-100" : "bg-red-100 placeholder-red-400"
+              isusername ? "bg-gray-100" : "bg-red-100 placeholder-red-400"
             } w-full`}
             onChange={(e) => handleChange(e)}
           />
         </div>
         <div>
-          <p className="text-md">&nbsp; Password</p>
+          <p className="text-md">
+            <span className={`${isusername ? "hidden" : ""}`}>
+              <FontAwesomeIcon
+                icon={faTriangleExclamation}
+                style={{ color: "#ee6d6d" }}
+              />
+            </span>
+            &nbsp; Password
+          </p>
           <input
             type="password"
             name="password"

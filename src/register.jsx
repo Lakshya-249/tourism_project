@@ -4,6 +4,7 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 // import { useDispatch, useSelector } from "react-redux";
 // import { addUser } from "./features/user";
 import { useNavigate } from "react-router-dom";
+import { register } from "./Service/signup";
 
 const Logintemplate = () => {
   const [formdata, setdata] = useState({
@@ -13,8 +14,8 @@ const Logintemplate = () => {
     password: "",
   });
   const [field, setfield] = useState(false);
-  const [terms, seterms] = useState(false);
   const [isusername, setusername] = useState(true);
+  const [terms, seterms] = useState(false);
   const [isemail, setemail] = useState(true);
 
   //   const dispatch = useDispatch();
@@ -35,20 +36,13 @@ const Logintemplate = () => {
 
   const handleClick = async () => {
     if (field && terms) {
-      //   dispatch(addUser(formdata));
-      //   const response = await fetch(
-      //     `https://profileprojectbanckend-production.up.railway.app/api/getuser?username=${formdata.username}&email=${formdata.email}`
-      //   );
-      //   const data = await response.json();
-      //   console.log(response.status);
-      //   if (response.status !== 200) {
-      //     if (data.message.startsWith("Email")) {
-      //       setemail(false);
-      //     } else {
-      //       setusername(false);
-      //     }
-      //     return;
-      //   }
+      const data = await register(formdata, "register");
+      console.log(data);
+      if (data == null) {
+        setusername(false);
+        setemail(false);
+        return;
+      }
       navigate("/signin");
     }
   };
@@ -69,7 +63,7 @@ const Logintemplate = () => {
         </span>
       </p>
       <div>
-        <p className="text-[1.6rem]">Sign up to Dribble</p>
+        <p className="text-[1.6rem]">Sign up to NamasteNomad</p>
         <p
           id="errorPara"
           className={`text-red-400 text-md font-semibold ${

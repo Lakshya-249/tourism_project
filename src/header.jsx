@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import image from "./assets/mylogo.jpg";
 import { NavLink } from "react-router-dom";
 import Slider from "./Slider";
-import { useNavigate } from "react-router-dom";
 import Destinations from "./Destinations";
+import { getusername } from "./Service/signup";
 
 function Header() {
-  const navigate = useNavigate();
-  const handleLoginButtonClick = () => {
-    alert(`Clicked Login`);
-  };
+  const [data, setdata] = useState("");
+  useEffect(() => {
+    const fetchdata = async () => {
+      const response = await getusername();
+      setdata(response.username[0].toUpperCase());
+      // console.log(data);
+    };
+    fetchdata();
+  }, []);
 
   return (
     <div className="bg-[#008080] py-1 mb-[1px] max-sm:py-3 px-3 flex flex-row max-sm:px-5 justify-between items-center">
@@ -53,7 +58,9 @@ function Header() {
       </div>
       <div className="items-center">
         <Destinations />
-        <div className="w-[2rem] h-[2rem] rounded-full bg-slate-100"></div>
+        <div className="w-[2rem] h-[2rem] font-bold text-lg rounded-full pt-0.5 bg-slate-100">
+          {data}
+        </div>
       </div>
     </div>
   );
