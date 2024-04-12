@@ -33,7 +33,7 @@ const Map = () => {
 
   return (
     <div className="flex items-stretch flex-col">
-      <div className="w-[20rem] h-[20rem] rounded-xl shadow-lg self-end">
+      <div className="w-[20rem] h-auto p-5 bg-black text-white text-md font-semibold rounded-xl shadow-lg self-end">
         {/* {ref.current} */}
         {info}
       </div>
