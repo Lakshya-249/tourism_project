@@ -42,7 +42,7 @@ const Map = () => {
         hoverComponent={({ value }) => {
           return (
             <>
-              {/* <p className="m-5">{value.name}</p> */}
+              <p className="m-5">{value.name}</p>
               <p className="hidden">{(ref.current = value.name)}</p>
             </>
           );
