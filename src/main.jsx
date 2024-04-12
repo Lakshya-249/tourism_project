@@ -14,6 +14,8 @@ import CulturalPlaces from "./cultural.jsx";
 import AdventurousPlaces from "./adventure.jsx";
 import SpiritualPlaces from "./spiritual.jsx";
 import Cuisine from "./cuisine.jsx";
+import State from "./nState.jsx";
+import Map from "./map.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
           {
             path: "spiritual",
             element: <SpiritualPlaces />,
+          },
+          {
+            path: "states",
+            element: <State />,
+          },
+          {
+            path: "map",
+            element: <Map />,
           },
           {
             path: "cuisine",

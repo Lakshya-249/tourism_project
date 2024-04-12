@@ -40,12 +40,20 @@ function Header() {
           <span>Packages</span>
         </NavLink>
         <NavLink
-          to="/layout/team"
+          to="/layout/states"
           className={({ isActive }) =>
             `nav-button ${isActive ? "text-black" : "text-white"}`
           }
         >
-          <span>Team</span>
+          <span>States</span>
+        </NavLink>
+        <NavLink
+          to="/layout/map"
+          className={({ isActive }) =>
+            `nav-button ${isActive ? "text-black" : "text-white"}`
+          }
+        >
+          <span>Events</span>
         </NavLink>
         <NavLink
           to="/layout/about"
