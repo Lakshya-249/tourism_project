@@ -1,5 +1,6 @@
 const url = "http://localhost:3001/api/";
 const url2 = "http://localhost:3001/api/username";
+const url3 = "http://localhost:3001/api/getprompts/";
 
 export const register = async (formdata, nurl) => {
   const response = await fetch(url + nurl, {
@@ -39,4 +40,11 @@ export const istoken = () => {
     return false;
   }
   return true;
+};
+
+export const getEvents = async (state) => {
+  const response = await fetch(url3 + state);
+  const data = await response.json();
+  // console.log(data);
+  return data;
 };

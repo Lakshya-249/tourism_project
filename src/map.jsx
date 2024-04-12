@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 
 import ReactDatamaps from "react-india-states-map";
+import { getEvents } from "./Service/signup";
 
 const STATES = {
   Maharashtra: {
@@ -12,6 +13,7 @@ const STATES = {
 };
 
 const Map = () => {
+  const [info, setinfo] = useState("");
   const ref = useRef("");
   const [activeState, setactiveState] = useState({
     data: STATES.Maharashtra,
@@ -20,15 +22,21 @@ const Map = () => {
 
   const [stateLists, setStateLists] = useState(STATES);
 
-  const stateOnClick = (data, name) => {
+  const stateOnClick = async (data, name) => {
     console.log(ref.current);
-    console.log(data);
+    // console.log(data);
+    const response = await getEvents(ref.current);
+    console.log(response);
+    setinfo(response.data);
     setactiveState({ data, name });
   };
 
   return (
-    <>
-      <div className=""></div>
+    <div className="flex items-stretch flex-col">
+      <div className="w-[20rem] h-[20rem] rounded-xl shadow-lg self-end">
+        {/* {ref.current} */}
+        {info}
+      </div>
       <ReactDatamaps
         regionData={["Maharashtra"]}
         mapLayout={{
@@ -42,7 +50,7 @@ const Map = () => {
         hoverComponent={({ value }) => {
           return (
             <>
-              <p className="m-5">{value.name}</p>
+              {/* <p className="m-5">{value.name}</p> */}
               <p className="hidden">{(ref.current = value.name)}</p>
             </>
           );
@@ -50,7 +58,7 @@ const Map = () => {
         onClick={stateOnClick}
         activeState={activeState}
       />
-    </>
+    </div>
   );
 };
 export default Map;

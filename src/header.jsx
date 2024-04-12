@@ -17,7 +17,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="bg-[#008080] py-1 mb-[1px] max-sm:py-3 px-3 flex flex-row max-sm:px-5 justify-between items-center">
+    <div className="bg-[#008080] relative z-50 py-1 mb-[1px] max-sm:py-3 px-3 flex flex-row max-sm:px-5 justify-between items-center">
       <div className="flex items-center justify-center md:justify-start max-sm:hidden">
         <img src={image} alt="logo" className="w-[7rem] h-auto rounded-full" />
       </div>
@@ -30,14 +30,6 @@ function Header() {
           }
         >
           <span>Home</span>
-        </NavLink>
-        <NavLink
-          to="/layout/packages"
-          className={({ isActive }) =>
-            `nav-button ${isActive ? "text-black" : "text-white"}`
-          }
-        >
-          <span>Packages</span>
         </NavLink>
         <NavLink
           to="/layout/states"

@@ -9,6 +9,7 @@ import image4 from "./assets/Punjab.jpg";
 import image5 from "./assets/Tamilnadu.jpg";
 import image6 from "./assets/Ladakh.jpg";
 import Section from "./section";
+import PackagesPage from "./Packages";
 
 // Array of images with their source, alt text, and caption
 const images = [
@@ -62,6 +63,7 @@ const PictureCarousel = () => {
         ))}
       </Slider>
       <Section />
+      <PackagesPage />
     </div>
   );
 };
